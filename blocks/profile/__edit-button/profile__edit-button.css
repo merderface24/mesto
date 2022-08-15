@@ -20,6 +20,7 @@
         grid-column: 2/3;
         justify-self: start;
         margin: 0 10px 7px;
+        background-size: 8px;
         width: 18px;
         height: 18px;
     }

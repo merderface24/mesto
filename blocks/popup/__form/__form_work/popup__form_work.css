@@ -1,0 +1,17 @@
+.popup__form_work {
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 1);
+    padding: 0 0 8px;
+    margin: 0 auto 38px;
+    outline: none;
+}
+
+.popup__form_work::placeholder {
+    color: #000000;
+}
+
+
+.popup__form_work:focus { 
+    outline: thin dotted;
+}
