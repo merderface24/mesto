@@ -4,7 +4,7 @@
 
 **Обзор**
 
-[***Ссылка на проект***](https://merderface24.github.io/russian-travel/)
+[***Ссылка на проект***](https://merderface24.github.io/mesto/)
 
 Инструменты для создания сайта :
 
