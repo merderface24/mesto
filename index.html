@@ -23,19 +23,6 @@
                 <button class="profile__add-button" type="button"></button>
             </div>
         </section>
-        <section class="popup">
-            <div class="popup__content">
-                <button type="button" class="popup__close-button"></button>
-                <h3 class="popup__title">Редактировать профиль</h3>
-                <form class="popup__form" name="change">
-                    <input type="text" placeholder="Жак-Ив Кусто" class="popup__input popup__input_name"
-                        name="inputName">
-                    <input type="text" placeholder="Исследователь океана" class="popup__input popup__input_work"
-                        name="inputWork">
-                    <button type="submit" class="popup__save-button">Сохранить</button>
-                </form>
-            </div>
-        </section>
         <section class="element">
             <article class="element__grid">
                 <img class="element__photo" src="./images/karachaevsk.jpg" alt="Карачаевск">
@@ -80,12 +67,23 @@
                 </div>
             </article>
         </section>
-
     </main>
     <footer class="footer">
         <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
-
     </footer>
+    <div class="popup">
+        <div class="popup__content">
+            <button type="button" class="popup__close-button"></button>
+            <h3 class="popup__title">Редактировать профиль</h3>
+            <form class="popup__form" name="change">
+                <input type="text" placeholder="Жак-Ив Кусто" class="popup__input popup__input_form_name"
+                    name="inputName">
+                <input type="text" placeholder="Исследователь океана" class="popup__input popup__input_form_work"
+                    name="inputWork">
+                <button type="submit" class="popup__save-button">Сохранить</button>
+            </form>
+        </div>
+    </div>
     <script src="./scripts/index.js"></script>
 </body>
 
