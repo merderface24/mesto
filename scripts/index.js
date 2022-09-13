@@ -1,6 +1,6 @@
 // popup
-const popupEdit = document.querySelector(".popup__open_edit");
-const popupAdd = document.querySelector(".popup__open_add");
+const popupEdit = document.querySelector(".popup_open_edit");
+const popupAdd = document.querySelector(".popup_open_add");
 const popupForm = document.querySelector(".popup__form");
 const popupFormEdit = document.querySelector(".popup-form-edit");
 const popupFormAdd = document.querySelector(".popup-form-add");
@@ -8,7 +8,7 @@ const popupName = document.querySelector(".popup__input_form_name");
 const popupWork = document.querySelector(".popup__input_form_work");
 const popupTitle = document.querySelector(".popup__input_form_title");
 const popupLink = document.querySelector(".popup__input_form_link");
-const popupFullImage = document.querySelector(".popup__open_full-img");
+const popupFullImage = document.querySelector(".popup_open_full-img");
 const popupContainerImg = document.querySelector(".popup__container-img");
 const popupImg = document.querySelector(".popup__img");
 const popupTitleImg = document.querySelector(".popup__title-img");
