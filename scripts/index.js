@@ -1,7 +1,6 @@
 // popup
 const popupEdit = document.querySelector(".popup_open_edit");
 const popupAdd = document.querySelector(".popup_open_add");
-const popupForm = document.querySelector(".popup__form");
 const popupFormEdit = document.querySelector(".popup-form-edit");
 const popupFormAdd = document.querySelector(".popup-form-add");
 const popupName = document.querySelector(".popup__input_form_name");
@@ -18,9 +17,8 @@ const profileName = document.querySelector(".profile__name");
 const profileWork = document.querySelector(".profile__work");
 const profileEdit = document.querySelector(".profile__edit-button");
 const profileAdd = document.querySelector(".profile__add-button");
-const popupClose = document.querySelectorAll(".popup__close-button");
+const popupCloseList = document.querySelectorAll(".popup__close-button");
 
-// new  Maks
 const sectionContainer = document.querySelector(".element");
 const template = document.querySelector("#element-tempalte");
 
@@ -55,13 +53,13 @@ const initialCards = [
 // open and close popup
 function openPopup(popupOpened) {
   popupOpened.classList.add("popup_opened");
-}
+};
 
 function closePopup(popupClosed) {
   popupClosed.classList.remove("popup_opened");
-}
+};
 
-popupClose.forEach((buttonClose) => {
+popupCloseList.forEach((buttonClose) => {
   const popup = buttonClose.closest(".popup");
   buttonClose.addEventListener("click", () => closePopup(popup));
 });
@@ -97,7 +95,6 @@ popupFormEdit.addEventListener("submit", (e) => {
 // add new cards
 function createCard(element) {
   const clone = template.content.cloneNode(true);
-
   const elementContainer = clone.querySelector(".element__grid");
   const elementTitle = clone.querySelector(".element__title");
   const elementPhotoLink = clone.querySelector(".element__photo");
@@ -119,18 +116,20 @@ function createCard(element) {
     e.target.closest(".element__grid").remove();
   });
 
-  //full
-  elementPhotoLink.addEventListener("click", (e) => {
+  return clone;
+};
+
+//full
+elementPhotoLink.addEventListener("click", (e) => {
     popupTitleImg.textContent = element.name;
     popupImg.src = element.link;
     popupImg.alt = element.name;
     openPopup(popupFullImage);
   });
-  sectionContainer.prepend(clone);
-}
 
-function addPhotoItem(elementAdd) {
-  elements.prepend(createCard(elementAdd));
-}
+function renderCard(element) {
+    const clone = createCard(element)
+    sectionContainer.prepend(clone);
+};
 
-initialCards.forEach(createCard);
+initialCards.forEach(renderCard);
