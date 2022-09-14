@@ -12,15 +12,15 @@ const popupContainerImg = document.querySelector(".popup__container-img");
 const popupImg = document.querySelector(".popup__img");
 const popupTitleImg = document.querySelector(".popup__title-img");
 
+const sectionContainer = document.querySelector(".element");
+const template = document.querySelector("#element-tempalte").content;
+
 // profile
 const profileName = document.querySelector(".profile__name");
 const profileWork = document.querySelector(".profile__work");
 const profileEdit = document.querySelector(".profile__edit-button");
 const profileAdd = document.querySelector(".profile__add-button");
 const popupCloseList = document.querySelectorAll(".popup__close-button");
-
-const sectionContainer = document.querySelector(".element");
-const template = document.querySelector("#element-tempalte");
 
 //stock cards
 const initialCards = [
@@ -76,12 +76,14 @@ profileAdd.addEventListener("click", () => {
   popupFormAdd.reset();
 });
 
+
+//Доделана отправка формы
 popupFormAdd.addEventListener("submit", (e) => {
   e.preventDefault();
-  createCard({
-    name: popupTitle.value,
-    link: popupLink.value,
-  });
+  const cardElement = new Object();
+  cardElement.name = popupTitle.value,
+  cardElement.link = popupLink.value,
+  renderCard(cardElement);
   closePopup(popupAdd);
 });
 
@@ -94,8 +96,7 @@ popupFormEdit.addEventListener("submit", (e) => {
 
 // add new cards
 function createCard(element) {
-  const clone = template.content.cloneNode(true);
-  const elementContainer = clone.querySelector(".element__grid");
+  const clone = template.querySelector(".element__grid").cloneNode(true);
   const elementTitle = clone.querySelector(".element__title");
   const elementPhotoLink = clone.querySelector(".element__photo");
   const elementLike = clone.querySelector(".element__like");
@@ -104,9 +105,6 @@ function createCard(element) {
   elementTitle.textContent = element.name;
   elementPhotoLink.src = element.link;
   elementPhotoLink.alt = element.name;
-  elementContainer.id = element.link;
-
-  sectionContainer.prepend(clone); 
 
   //delete
   elementLike.addEventListener("click", function (e) {
@@ -114,8 +112,8 @@ function createCard(element) {
   });
 
   //like
-  elementTrash.addEventListener("click", function (e) {
-    e.target.closest(".element__grid").remove();
+  elementTrash.addEventListener("click", function () {
+    clone.remove();
   });
 
   //full
