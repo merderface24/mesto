@@ -106,6 +106,8 @@ function createCard(element) {
   elementPhotoLink.alt = element.name;
   elementContainer.id = element.link;
 
+  sectionContainer.prepend(clone); 
+
   //delete
   elementLike.addEventListener("click", function (e) {
     e.target.classList.toggle("element__like_active");
@@ -116,20 +118,19 @@ function createCard(element) {
     e.target.closest(".element__grid").remove();
   });
 
-  return clone;
-};
-
-//full
-elementPhotoLink.addEventListener("click", (e) => {
+  //full
+  elementPhotoLink.addEventListener("click", () => {
     popupTitleImg.textContent = element.name;
     popupImg.src = element.link;
     popupImg.alt = element.name;
     openPopup(popupFullImage);
   });
 
-function renderCard(element) {
-    const clone = createCard(element)
-    sectionContainer.prepend(clone);
+  return clone;
+};
+
+function renderCard(e) {
+    sectionContainer.prepend(createCard(e));
 };
 
 initialCards.forEach(renderCard);
