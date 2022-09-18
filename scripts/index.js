@@ -1,4 +1,5 @@
 // popup
+const popup = document.querySelectorAll(".popup")
 const popupEdit = document.querySelector(".popup_open_edit");
 const popupAdd = document.querySelector(".popup_open_add");
 const popupFormEdit = document.querySelector(".popup-form-edit");
@@ -11,6 +12,7 @@ const popupFullImage = document.querySelector(".popup_open_full-img");
 const popupContainerImg = document.querySelector(".popup__container-img");
 const popupImg = document.querySelector(".popup__img");
 const popupTitleImg = document.querySelector(".popup__title-img");
+const popupSaveButton = document.querySelector(".popup__save-button");
 
 const sectionContainer = document.querySelector(".element");
 const template = document.querySelector("#element-tempalte").content;
@@ -21,6 +23,7 @@ const profileWork = document.querySelector(".profile__work");
 const profileEdit = document.querySelector(".profile__edit-button");
 const profileAdd = document.querySelector(".profile__add-button");
 const popupCloseList = document.querySelectorAll(".popup__close-button");
+
 
 //stock cards
 const initialCards = [
@@ -53,16 +56,38 @@ const initialCards = [
 // open and close popup
 function openPopup(popupOpened) {
   popupOpened.classList.add("popup_opened");
+  document.addEventListener('keydown', closePopupClickEscape);
 };
 
 function closePopup(popupClosed) {
   popupClosed.classList.remove("popup_opened");
+  document.removeEventListener('keydown', closePopupClickEscape);
 };
 
 popupCloseList.forEach((buttonClose) => {
   const popup = buttonClose.closest(".popup");
   buttonClose.addEventListener("click", () => closePopup(popup));
 });
+
+//closing via escape
+function closePopupClickEscape(evt) {
+    if (evt.key === 'Escape') {
+      const popupCloseEscape = document.querySelector(".popup_opened");
+      closePopup(popupCloseEscape);
+    };
+  };
+
+  //closing via overlay
+  function closePopupClickOverlay() {
+    popup.forEach((e) => {
+        e.addEventListener("click", (evt) => {
+        if (evt.target === evt.currentTarget) { 
+          closePopup(e);
+        };
+      });
+    });
+  };
+  closePopupClickOverlay();
 
 profileEdit.addEventListener("click", () => {
   openPopup(popupEdit);
