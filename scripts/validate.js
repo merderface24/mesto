@@ -35,7 +35,7 @@ function hideInputError(formElement, inputElement, cfg) {
     errorElement.textContent = '';
 }
 
-function checkInputValidity(formElement, inputElement, cfg) {
+function toggleInputErrorState(formElement, inputElement, cfg) {
     if (!inputElement.validity.valid) {
         showInputError(formElement, inputElement, inputElement.validationMessage, cfg);
     } else {
@@ -49,7 +49,7 @@ function setEventListeners(formElement, cfg) {
     toggleButtonState(inputList, buttonElement, cfg);
     inputList.forEach((inputElement) => {
         inputElement.addEventListener('input', function () {
-            checkInputValidity(formElement, inputElement, cfg);
+            toggleInputErrorState(formElement, inputElement, cfg);
             toggleButtonState(inputList, buttonElement, cfg);
         });
 

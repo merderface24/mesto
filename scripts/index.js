@@ -1,4 +1,4 @@
-const popup = document.querySelectorAll(".popup")
+const popups = document.querySelectorAll(".popup")
 const popupEdit = document.querySelector(".popup_open_edit");
 const popupAdd = document.querySelector(".popup_open_add");
 const popupFormEdit = document.querySelector(".popup-form-edit");
@@ -20,7 +20,7 @@ const profileName = document.querySelector(".profile__name");
 const profileWork = document.querySelector(".profile__work");
 const profileEdit = document.querySelector(".profile__edit-button");
 const profileAdd = document.querySelector(".profile__add-button");
-const popupCloseList = document.querySelectorAll(".popup__close-button");
+const popupCloseButtons = document.querySelectorAll(".popup__close-button");
 
 //stock cards
 const initialCards = [
@@ -53,21 +53,21 @@ const initialCards = [
 // open and close popup
 function openPopup(popupOpened) {
   popupOpened.classList.add("popup_opened");
-  document.addEventListener('keydown', closePopupClickEscape);
+  document.addEventListener('keydown', closePopupByPressEscape);
 };
 
 function closePopup(popupClosed) {
   popupClosed.classList.remove("popup_opened");
-  document.removeEventListener('keydown', closePopupClickEscape);
+  document.removeEventListener('keydown', closePopupByPressEscape);
 };
 
-popupCloseList.forEach((buttonClose) => {
-  const popup = buttonClose.closest(".popup");
-  buttonClose.addEventListener("click", () => closePopup(popup));
+popupCloseButtons.forEach((buttonClose) => {
+  const popups = buttonClose.closest(".popup");
+  buttonClose.addEventListener("click", () => closePopup(popups));
 });
 
 //closing escape
-function closePopupClickEscape(evt) {
+function closePopupByPressEscape(evt) {
   if (evt.key === 'Escape') {
     const popupCloseEscape = document.querySelector(".popup_opened");
     closePopup(popupCloseEscape);
@@ -75,8 +75,8 @@ function closePopupClickEscape(evt) {
 };
 
 //closing overlay
-function closePopupClickOverlay() {
-  popup.forEach((e) => {
+function closePopupByPressOverlay() {
+  popups.forEach((e) => {
     e.addEventListener("click", (evt) => {
       if (evt.target === evt.currentTarget) {
         closePopup(e);
@@ -84,7 +84,7 @@ function closePopupClickOverlay() {
     });
   });
 };
-closePopupClickOverlay();
+closePopupByPressOverlay();
 
 profileEdit.addEventListener("click", () => {
   openPopup(popupEdit);
@@ -95,7 +95,7 @@ profileEdit.addEventListener("click", () => {
 profileAdd.addEventListener("click", () => {
   openPopup(popupAdd);
 
-  popupFormAdd.reset();
+  popupFormAdd.reset('popup__save-button_disabled');
 });
 
 //Доделана отправка формы
@@ -104,7 +104,7 @@ popupFormAdd.addEventListener("submit", (e) => {
   const cardElement = new Object();
   cardElement.name = popupTitle.value,
     cardElement.link = popupLink.value,
-    renderCard(cardElement);
+    card(cardElement);
   closePopup(popupAdd);
 });
 
@@ -114,6 +114,7 @@ popupFormEdit.addEventListener("submit", (e) => {
   profileWork.textContent = popupWork.value;
   closePopup(popupEdit);
 });
+
 
 // add new cards
 function createCard(element) {
@@ -148,8 +149,8 @@ function createCard(element) {
   return clone;
 };
 
-function renderCard(e) {
+function card(e) {
   sectionContainer.prepend(createCard(e));
 };
 
-initialCards.forEach(renderCard);
+initialCards.forEach(card);
