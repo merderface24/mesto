@@ -1,4 +1,3 @@
-// popup
 const popup = document.querySelectorAll(".popup")
 const popupEdit = document.querySelector(".popup_open_edit");
 const popupAdd = document.querySelector(".popup_open_add");
@@ -17,13 +16,11 @@ const popupSaveButton = document.querySelector(".popup__save-button");
 const sectionContainer = document.querySelector(".element");
 const template = document.querySelector("#element-tempalte").content;
 
-// profile
 const profileName = document.querySelector(".profile__name");
 const profileWork = document.querySelector(".profile__work");
 const profileEdit = document.querySelector(".profile__edit-button");
 const profileAdd = document.querySelector(".profile__add-button");
 const popupCloseList = document.querySelectorAll(".popup__close-button");
-
 
 //stock cards
 const initialCards = [
@@ -69,25 +66,25 @@ popupCloseList.forEach((buttonClose) => {
   buttonClose.addEventListener("click", () => closePopup(popup));
 });
 
-//closing via escape
+//closing escape
 function closePopupClickEscape(evt) {
-    if (evt.key === 'Escape') {
-      const popupCloseEscape = document.querySelector(".popup_opened");
-      closePopup(popupCloseEscape);
-    };
+  if (evt.key === 'Escape') {
+    const popupCloseEscape = document.querySelector(".popup_opened");
+    closePopup(popupCloseEscape);
   };
+};
 
-  //closing via overlay
-  function closePopupClickOverlay() {
-    popup.forEach((e) => {
-        e.addEventListener("click", (evt) => {
-        if (evt.target === evt.currentTarget) { 
-          closePopup(e);
-        };
-      });
+//closing overlay
+function closePopupClickOverlay() {
+  popup.forEach((e) => {
+    e.addEventListener("click", (evt) => {
+      if (evt.target === evt.currentTarget) {
+        closePopup(e);
+      };
     });
-  };
-  closePopupClickOverlay();
+  });
+};
+closePopupClickOverlay();
 
 profileEdit.addEventListener("click", () => {
   openPopup(popupEdit);
@@ -101,14 +98,13 @@ profileAdd.addEventListener("click", () => {
   popupFormAdd.reset();
 });
 
-
 //Доделана отправка формы
 popupFormAdd.addEventListener("submit", (e) => {
   e.preventDefault();
   const cardElement = new Object();
   cardElement.name = popupTitle.value,
-  cardElement.link = popupLink.value,
-  renderCard(cardElement);
+    cardElement.link = popupLink.value,
+    renderCard(cardElement);
   closePopup(popupAdd);
 });
 
@@ -153,7 +149,7 @@ function createCard(element) {
 };
 
 function renderCard(e) {
-    sectionContainer.prepend(createCard(e));
+  sectionContainer.prepend(createCard(e));
 };
 
 initialCards.forEach(renderCard);
