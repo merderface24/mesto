@@ -7,6 +7,6 @@
 }
 
 .element__grid:hover {
-    transition: 0.3s ;
+    transition: 0.3s;
     box-shadow: 0px -5px 10px 0px rgba(125, 125, 125, 0.498);
 }
