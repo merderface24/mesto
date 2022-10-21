@@ -105,6 +105,8 @@ popupFormAdd.addEventListener("submit", (e) => {
   cardElement.name = popupTitle.value,
     cardElement.link = popupLink.value,
     card(cardElement);
+    const buttonSave = popupAdd.querySelector(validationConfig.submitButtonSelector);
+    setInActiveButton(buttonSave, validationConfig);
   closePopup(popupAdd);
 });
 
