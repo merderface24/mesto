@@ -39,15 +39,13 @@ profileEdit.addEventListener("click", () => {
   openPopup(popupEdit);
   popupName.value = profileName.textContent;
   popupWork.value = profileWork.textContent;
-  formEditValid._setEventListeners()
-  formEditValid._enableValidation();
+  formEditValid.enableValidation()
 });
 
 profileAdd.addEventListener("click", () => {
   openPopup(popupAdd);
   popupFormAdd.reset('popup__save-button_disabled');
-  formAddValid._setEventListeners();
-  formAddValid._enableValidation();
+  formAddValid.enableValidation();
 });
 
 function createCard(element) {

@@ -72,10 +72,10 @@ export class FormValidator {
         });
     }
 
-    _enableValidation() {
-        const formList = Array.from(document.querySelectorAll(this._formSelector));
-        formList.forEach(() => {
-            _setEventListeners()
+    enableValidation() {
+        this._formElement.addEventListener('submit', (e) => {
+            e.preventDefault();
         })
-    }
+        this._setEventListeners();
+    };
 }
