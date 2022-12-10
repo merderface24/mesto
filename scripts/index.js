@@ -34,6 +34,8 @@ const validationConfig = {
 
 const formEditValid = new FormValidator(validationConfig, popupFormEdit);
 const formAddValid = new FormValidator(validationConfig, popupFormAdd);
+formAddValid.setEventListeners()
+formEditValid.setEventListeners()
 
 profileEdit.addEventListener("click", () => {
   openPopup(popupEdit);
