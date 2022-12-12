@@ -1,8 +1,8 @@
-import { Card } from './Card.js';
-import { initialCards } from './InitialCards.js';
-import { FormValidator } from './FormValidator.js';
+import { Card } from "./Card.js";
+import { initialCards } from "./InitialCards.js";
+import { FormValidator } from "./FormValidator.js";
 
-const popups = document.querySelectorAll(".popup")
+const popups = document.querySelectorAll(".popup");
 const popupEdit = document.querySelector(".popup_open_edit");
 const popupAdd = document.querySelector(".popup_open_add");
 const popupFormEdit = document.querySelector(".popup-form-edit");
@@ -24,53 +24,50 @@ const profileAdd = document.querySelector(".profile__add-button");
 const popupCloseButtons = document.querySelectorAll(".popup__close-button");
 
 const validationConfig = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__save-button',
-  inactiveButtonClass: 'popup__save-button_disabled',
-  inputErrorClass: 'popup__input_form_error',
-  errorClass: 'popup__error_visible'
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__save-button",
+  inactiveButtonClass: "popup__save-button_disabled",
+  inputErrorClass: "popup__input_form_error",
+  errorClass: "popup__error_visible",
 };
 
 const formEditValid = new FormValidator(validationConfig, popupFormEdit);
 const formAddValid = new FormValidator(validationConfig, popupFormAdd);
-formAddValid.setEventListeners()
-formEditValid.setEventListeners()
+formEditValid.enableValidation();
+formAddValid.enableValidation();
 
 profileEdit.addEventListener("click", () => {
   openPopup(popupEdit);
   popupName.value = profileName.textContent;
   popupWork.value = profileWork.textContent;
-  formEditValid.enableValidation()
 });
 
 profileAdd.addEventListener("click", () => {
   openPopup(popupAdd);
-  popupFormAdd.reset('popup__save-button_disabled');
-  formAddValid.enableValidation();
+  popupFormAdd.reset("popup__save-button_disabled");
 });
 
 function createCard(element) {
-  const newCard = new Card(element, '#element-tempalte', heandleOpenImage)
-  return newCard.generateCard()
+  const newCard = new Card(element, "#element-tempalte", heandleOpenImage);
+  return newCard.generateCard();
 }
 
 initialCards.forEach((item) => {
-  const card = createCard(item)
+  const card = createCard(item);
   sectionContainer.prepend(card);
-})
-
+});
 
 // open and close popup
 function openPopup(popupOpened) {
   popupOpened.classList.add("popup_opened");
-  document.addEventListener('keydown', closePopupByPressEscape);
-};
+  document.addEventListener("keydown", closePopupByPressEscape);
+}
 
 function closePopup(popupClosed) {
   popupClosed.classList.remove("popup_opened");
-  document.removeEventListener('keydown', closePopupByPressEscape);
-};
+  document.removeEventListener("keydown", closePopupByPressEscape);
+}
 
 popupCloseButtons.forEach((buttonClose) => {
   const popups = buttonClose.closest(".popup");
@@ -79,11 +76,11 @@ popupCloseButtons.forEach((buttonClose) => {
 
 //closing escape
 function closePopupByPressEscape(evt) {
-  if (evt.key === 'Escape') {
+  if (evt.key === "Escape") {
     const popupCloseEscape = document.querySelector(".popup_opened");
     closePopup(popupCloseEscape);
-  };
-};
+  }
+}
 
 //closing overlay
 function initClosePopupsByOverlayClick() {
@@ -91,10 +88,10 @@ function initClosePopupsByOverlayClick() {
     e.addEventListener("click", (evt) => {
       if (evt.target === evt.currentTarget) {
         closePopup(e);
-      };
+      }
     });
   });
-};
+}
 initClosePopupsByOverlayClick();
 
 //Доделана отправка формы
@@ -104,9 +101,10 @@ popupFormAdd.addEventListener("submit", (e) => {
   const link = popupLink.value;
   const objectPlace = {
     name: text,
-    link: link
+    link: link,
   };
   sectionContainer.prepend(createCard(objectPlace));
+  formAddValid.setInActiveButton();
   closePopup(popupAdd);
 });
 
@@ -114,6 +112,7 @@ popupFormEdit.addEventListener("submit", (e) => {
   e.preventDefault();
   profileName.textContent = popupName.value;
   profileWork.textContent = popupWork.value;
+  formEditValid.setInActiveButton();
   closePopup(popupEdit);
 });
 
@@ -124,8 +123,4 @@ function heandleOpenImage(name, link) {
   openPopup(popupFullImage);
 }
 
-export { heandleOpenImage }
-
-
-
-
+export { heandleOpenImage };
