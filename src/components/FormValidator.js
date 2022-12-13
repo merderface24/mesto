@@ -1,4 +1,4 @@
-export class FormValidator {
+export default class FormValidator {
   constructor(cfg, formElement) {
     this._cfg = cfg;
     this._formElement = formElement;
@@ -61,7 +61,7 @@ export class FormValidator {
     }
   }
 
-  _setEventListeners() {
+  setEventListeners() {
     this._toggleButtonState();
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
@@ -80,6 +80,6 @@ export class FormValidator {
     this._formElement.addEventListener("submit", (e) => {
       e.preventDefault();
     });
-    this._setEventListeners();
+    this.setEventListeners();
   }
 }
