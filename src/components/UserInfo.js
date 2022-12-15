@@ -1,18 +1,18 @@
 export default class UserInfo {
-    constructor({popupNameSelector, popupWorkSelector}) {
-        this._ppopupNameSelector = document.querySelector(popupNameSelector);
-        this._popupWorkSelector = document.querySelector(popupWorkSelector);
-    }
+    constructor({ popupNameSelector, popupWorkSelector }) {
+        this._name = document.querySelector(popupNameSelector);
+        this._work = document.querySelector(popupWorkSelector);
 
+    }
     getUserInfo() {
         return {
-            popupNameSelector: this._popupNameSelector.textContent,
-            popupWorkSelector: this._popupWorkSelector.textContent
+            inputName: this._name.textContent,
+            inputWork: this._work.textContent,
         }
-    } 
+    }
 
-    setUserInfo() {
-        this._popupNameSelector.textContent = popupNameSelector;
-        this._popupWorkSelector.textContent = popupWorkSelector;
+    setUserInfo({ inputName, inputWork }) {
+        this._name.textContent = inputName;
+        this._work.textContent = inputWork;
     }
 }

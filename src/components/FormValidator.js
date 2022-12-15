@@ -7,12 +7,8 @@ export default class FormValidator {
     this._inactiveButtonClass = cfg.inactiveButtonClass;
     this._inputErrorClass = cfg.inputErrorClass;
     this._errorClass = cfg.errorClass;
-    this._buttonElement = this._formElement.querySelector(
-      this._submitButtonSelector
-    );
-    this._inputList = Array.from(
-      this._formElement.querySelectorAll(this._inputSelector)
-    );
+    this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
+    this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
   }
 
   _hasInvalidInput() {
@@ -24,6 +20,12 @@ export default class FormValidator {
   _setActiveButton() {
     this._buttonElement.classList.remove(this._inactiveButtonClass);
     this._buttonElement.disabled = false;
+  }
+
+  //Сделал метод дизактивации кнопки публичным, что бы не создавать аналогичный.
+  setInActiveButton() {
+    this._buttonElement.classList.add(this._inactiveButtonClass);
+    this._buttonElement.disabled = true;
   }
 
   _toggleButtonState() {
@@ -61,7 +63,13 @@ export default class FormValidator {
     }
   }
 
-  setEventListeners() {
+  resetErrors() {
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement);
+    });
+  }
+
+  _setEventListeners() {
     this._toggleButtonState();
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
@@ -70,16 +78,11 @@ export default class FormValidator {
       });
     });
   }
-//Сделал метод дизактивации кнопки публичным, что бы не создавать аналогичный.
-  setInActiveButton() {
-    this._buttonElement.classList.add(this._inactiveButtonClass);
-    this._buttonElement.disabled = true;
-  }
 
   enableValidation() {
     this._formElement.addEventListener("submit", (e) => {
       e.preventDefault();
     });
-    this.setEventListeners();
+    this._setEventListeners();
   }
 }
