@@ -2,7 +2,7 @@ import "./index.css";
 
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
-import { initialCards } from '../components/InitialCards.js';
+import { initialCards } from '../components/initialCards.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import Section from '../components/Section.js';
@@ -56,7 +56,6 @@ popupEditProfile.setEventListeners();
 
 profileEdit.addEventListener('click', () => {
   popupEditProfile.setInputValues(userInfo.getUserInfo());
-  userInfo.getUserInfo();
   formEditValid.setInActiveButton();
   formEditValid.resetErrors();
   popupEditProfile.open();
@@ -66,6 +65,8 @@ const popupAddImage = new PopupWithForm('.popup_open_add', (data) => {
   const card = createCard({ name: data.inputTitle, link: data.inputLink });
   newSectionCard.addItem(card);
   popupAddImage.close();
+  //не могу понять как конкретно воспроизвести ошибку, 
+  //у меня в нескольких браузерах дизейблится кнопка, ни разу не удалось создать пустую карточку
   formAddValid.setInActiveButton();
 });
 popupAddImage.setEventListeners();
