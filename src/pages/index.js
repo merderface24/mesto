@@ -67,13 +67,13 @@ const popupAddImage = new PopupWithForm('.popup_open_add', (data) => {
   popupAddImage.close();
   //не могу понять как конкретно воспроизвести ошибку, 
   //у меня в нескольких браузерах дизейблится кнопка, ни разу не удалось создать пустую карточку
-  formAddValid.setInActiveButton();
 });
 popupAddImage.setEventListeners();
 
 profileAdd.addEventListener('click', () => {
   formAddValid.resetErrors();
   popupAddImage.open();
+  formAddValid.setInActiveButton();
 });
 
 const userInfo = new UserInfo({
