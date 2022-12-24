@@ -1,0 +1,16 @@
+/* .profile__new-avatar {
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 26px;
+    height: 26px;
+    background-image: url(../__new-avatar/editPen.svg);
+}
+
+@media screen and (min-width: 880px) {
+    .profile__new-avatar {
+        top: 95px;
+        left: 60px;
+    }
+} */

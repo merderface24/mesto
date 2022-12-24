@@ -13,28 +13,19 @@ export default class FormValidator {
 
   _hasInvalidInput() {
     return this._inputList.some((inputList) => {
-      return !inputList.validity.valid;
+      return !inputList.validity.valid
     });
-  }
+  };
 
-  _setActiveButton() {
-    this._buttonElement.classList.remove(this._inactiveButtonClass);
-    this._buttonElement.disabled = false;
-  }
-
-  //Сделал метод дизактивации кнопки публичным, что бы не создавать аналогичный.
-  setInActiveButton() {
-    this._buttonElement.classList.add(this._inactiveButtonClass);
-    this._buttonElement.disabled = true;
-  }
-
-  _toggleButtonState() {
+  _setButtonStateSave() {
     if (this._hasInvalidInput()) {
-      this.setInActiveButton();
+      this._buttonElement.classList.add(this._inactiveButtonClass);
+      this._buttonElement.setAttribute('disabled', '');
     } else {
-      this._setActiveButton();
-    }
-  }
+      this._buttonElement.classList.remove(this._inactiveButtonClass);
+      this._buttonElement.removeAttribute('disabled');
+    };
+  };
 
   _showInputError = (inputElement, errorMessage) => {
     const errorElement = this._formElement.querySelector(
@@ -67,14 +58,15 @@ export default class FormValidator {
     this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
     });
-  }
+    this._setButtonStateSave();
+  };
 
   _setEventListeners() {
-    this._toggleButtonState();
+    this._setButtonStateSave();
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
         this._toggleInputErrorState(inputElement);
-        this._toggleButtonState();
+        this._setButtonStateSave();
       });
     });
   }
@@ -83,3 +75,5 @@ export default class FormValidator {
     this._setEventListeners();
   }
 }
+
+

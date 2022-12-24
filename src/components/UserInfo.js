@@ -1,18 +1,28 @@
 export default class UserInfo {
-    constructor({ popupNameSelector, popupWorkSelector }) {
-        this._name = document.querySelector(popupNameSelector);
-        this._work = document.querySelector(popupWorkSelector);
+  constructor({name, work, avatar}) {
+    this._name = document.querySelector(name);
+    this._work = document.querySelector(work);
+    this._avatar = document.querySelector(avatar);
+  }
 
+  getUserInfo() {
+    return {
+      name: this._name.textContent,
+      about: this._work.textContent
     }
-    getUserInfo() {
-        return {
-            inputName: this._name.textContent,
-            inputWork: this._work.textContent,
-        }
-    }
+  }
+  setUserInfo(data) {
+    this._name.textContent = data.name;
+    this._work.textContent = data.about;
+    this._avatar.src = data.avatar;
+  }
 
-    setUserInfo({ inputName, inputWork }) {
-        this._name.textContent = inputName;
-        this._work.textContent = inputWork;
-    }
+  setUserId(data) {
+    return data._id;
+  }
+
+  getUserId() {
+    return this._id;
+  }
 }
+
